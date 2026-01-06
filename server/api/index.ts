@@ -13,6 +13,9 @@ import withdrawalRoutes from "../src/routes/withdrawal.routes"
 
 const app = express()
 
+// Trust proxy for Vercel deployment
+app.set("trust proxy", 1)
+
 // Database connection
 connectDB()
 
