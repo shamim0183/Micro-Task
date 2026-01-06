@@ -78,6 +78,14 @@ export const handlePaymentSuccess = async (
   res: Response
 ): Promise<void> => {
   try {
+    if (!stripe) {
+      res.status(500).json({
+        success: false,
+        message: "Payment system not configured",
+      })
+      return
+    }
+
     const { sessionId } = req.body
 
     // Retrieve the session from Stripe
@@ -86,7 +94,7 @@ export const handlePaymentSuccess = async (
     if (session.payment_status === "paid") {
       const userId = session.metadata.userId
       const coins = parseInt(session.metadata.coins)
-      const amount = session.amount_total / 100 // Convert back to dollars
+      const amount = session.amount_total! / 100 // Convert back to dollars
 
       // Update user coins
       const user = await User.findById(userId)
