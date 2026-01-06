@@ -2,20 +2,24 @@ import mongoose, { Document, Schema } from "mongoose"
 
 export interface IPayment extends Document {
   userId: mongoose.Types.ObjectId
+  sessionId: string
   amount: number
   coins: number
-  paymentMethod: string
-  transactionId: string
-  status: "pending" | "completed" | "failed"
+  status: string
   createdAt: Date
 }
 
-const paymentSchema = new Schema<IPayment>(
+const PaymentSchema: Schema = new Schema(
   {
     userId: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
+    },
+    sessionId: {
+      type: String,
+      required: true,
+      unique: true,
     },
     amount: {
       type: Number,
@@ -23,15 +27,6 @@ const paymentSchema = new Schema<IPayment>(
     },
     coins: {
       type: Number,
-      required: true,
-    },
-    paymentMethod: {
-      type: String,
-      required: true,
-      default: "stripe",
-    },
-    transactionId: {
-      type: String,
       required: true,
     },
     status: {
@@ -43,4 +38,4 @@ const paymentSchema = new Schema<IPayment>(
   { timestamps: true }
 )
 
-export default mongoose.model<IPayment>("Payment", paymentSchema)
+export default mongoose.model<IPayment>("Payment", PaymentSchema)
