@@ -1,9 +1,8 @@
-```typescript
 import { Response } from "express"
+import Stripe from "stripe"
 import { AuthRequest } from "../middleware/auth.middleware"
 import Payment from "../models/payment.model"
 import User from "../models/User.model"
-import Stripe from "stripe"
 
 const stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY)
