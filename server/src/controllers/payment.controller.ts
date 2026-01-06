@@ -106,8 +106,8 @@ export const handlePaymentSuccess = async (
       const coins = parseInt(coinsStr)
       const amount = (session.amount_total || 0) / 100 // Convert back to dollars
 
-      // Update user coins
-      const user = await User.findById(userId)
+      // Update user coins - userId is Firebase UID, not MongoDB _id
+      const user = await User.findOne({ firebaseUid: userId })
       if (!user) {
         res.status(404).json({ success: false, message: "User not found" })
         return
