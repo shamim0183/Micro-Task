@@ -5,10 +5,10 @@ import { useAuth } from "@/contexts/AuthContext"
 import apiClient from "@/lib/axios"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
-import { useEffect, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import { FaCheckCircle, FaCoins, FaSpinner } from "react-icons/fa"
 
-export default function PaymentSuccessPage() {
+function PaymentSuccessPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const { refreshUser } = useAuth()
@@ -123,5 +123,21 @@ export default function PaymentSuccessPage() {
         )}
       </div>
     </DashboardLayout>
+  )
+}
+
+export default function PaymentSuccessPageWrapper() {
+  return (
+    <Suspense
+      fallback={
+        <DashboardLayout>
+          <div className="flex items-center justify-center min-h-screen">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-600"></div>
+          </div>
+        </DashboardLayout>
+      }
+    >
+      <PaymentSuccessPage />
+    </Suspense>
   )
 }
