@@ -1,6 +1,6 @@
 import { NextFunction, Response } from "express"
 import { AuthRequest } from "../middleware/auth.middleware"
-import Payment from "../models/Payment.model"
+import Payment from "../models/payment.model"
 import Submission from "../models/Submission.model"
 import Task from "../models/Task.model"
 import User from "../models/User.model"
@@ -67,7 +67,7 @@ export const getAdminStats = async (
         tasks: totalTasks,
         submissions: totalSubmissions,
         coins: totalCoins,
-        payments: totalPayments,
+        payments: totalRevenue,
         pendingWithdrawals,
       },
     })

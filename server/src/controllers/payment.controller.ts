@@ -1,10 +1,12 @@
+```typescript
 import { Response } from "express"
 import { AuthRequest } from "../middleware/auth.middleware"
-import Payment from "../models/Payment.model"
+import Payment from "../models/payment.model"
 import User from "../models/User.model"
+import Stripe from "stripe"
 
 const stripe = process.env.STRIPE_SECRET_KEY
-  ? require("stripe")(process.env.STRIPE_SECRET_KEY)
+  ? new Stripe(process.env.STRIPE_SECRET_KEY)
   : null
 
 // Create payment intent for coin purchase
