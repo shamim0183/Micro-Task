@@ -1,11 +1,11 @@
-import * as admin from "firebase-admin"
-import serviceAccount from "./email-password-auth-3764b-firebase-adminsdk-fbsvc-6d88fcc3f4.json"
+import admin from "firebase-admin"
 
-// Initialize Firebase Admin SDK
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
-  projectId: process.env.FIREBASE_PROJECT_ID || "email-password-auth-3764b",
-})
+// Initialize Firebase Admin using environment variable
+if (!admin.apps.length) {
+  admin.initializeApp({
+    projectId: process.env.FIREBASE_PROJECT_ID || "email-password-auth-3764b",
+  })
+}
 
 console.log("✅ Firebase Admin SDK Initialized")
 

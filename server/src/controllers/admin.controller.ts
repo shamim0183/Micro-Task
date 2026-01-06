@@ -49,10 +49,10 @@ export const getAdminStats = async (
     const allUsers = await User.find()
     const totalCoins = allUsers.reduce((sum, user) => sum + user.coins, 0)
 
-    // Calculate total payments
-    const allPayments = await Payment.find({ status: "completed" })
-    const totalPayments = allPayments.reduce(
-      (sum, payment) => sum + payment.amount,
+    // Calculate total revenue from payments
+    const payments = await Payment.find({ status: "completed" })
+    const totalRevenue = payments.reduce(
+      (sum: number, payment: any) => sum + payment.amount,
       0
     )
 
