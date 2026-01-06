@@ -1,6 +1,13 @@
-# 🚀 TaskEarn - Micro-Task and Earning Platform
+# 🚀# TaskEarn - Micro Task Management Platform
 
-A comprehensive full-stack MERN application that connects workers with micro-task opportunities and enables buyers to get work done efficiently through a coin-based payment system.
+**TaskEarn** is a comprehensive micro-task marketplace platform that connects task creators (buyers) with workers. Built with modern web technologies, it offers secure payment processing via Stripe, real-time notifications, and role-based dashboards for buyers, workers, and administrators.
+
+## 🚀 Live Deployment
+
+- **Live Application:** [https://micro-task-client-one.vercel.app/](https://micro-task-client-one.vercel.app/)
+- **API Server:** [https://micro-task-server-gamma.vercel.app/](https://micro-task-server-gamma.vercel.app/)
+
+---
 
 ![Next.js](https://img.shields.io/badge/Next.js-14-black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
