@@ -1,0 +1,15 @@
+.env.local
+.env.production
+node_modules
+.next
+dist
+*.env
+*.log
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.firebase
+.vercel
+*firebase-adminsdk*.json
