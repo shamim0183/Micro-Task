@@ -238,7 +238,7 @@ export default function AddTaskPage() {
             <button
               type="submit"
               disabled={
-                loading || uploadingImage || (user && user.coins < totalCost)
+                loading || uploadingImage || !!(user && user.coins < totalCost)
               }
               className="w-full px-6 py-3 bg-gradient-primary text-white rounded-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
             >
