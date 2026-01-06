@@ -92,9 +92,19 @@ export const handlePaymentSuccess = async (
     const session = await stripe.checkout.sessions.retrieve(sessionId)
 
     if (session.payment_status === "paid") {
-      const userId = session.metadata.userId
-      const coins = parseInt(session.metadata.coins)
-      const amount = session.amount_total! / 100 // Convert back to dollars
+      const userId = session.metadata?.userId
+      const coinsStr = session.metadata?.coins
+
+      if (!userId || !coinsStr) {
+        res.status(400).json({
+          success: false,
+          message: "Invalid session metadata",
+        })
+        return
+      }
+
+      const coins = parseInt(coinsStr)
+      const amount = (session.amount_total || 0) / 100 // Convert back to dollars
 
       // Update user coins
       const user = await User.findById(userId)
